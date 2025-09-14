@@ -32,26 +32,18 @@ header div p{
   padding: 1rem;     /* Add some padding */
 }
 
-/* Make images responsive so they scale with the screen size */
-/* Make images in cards centered and responsive */
-.responsive-img {
-  display: block;           /* Removes extra space below the image */
-  margin-left: auto;        /* Centers image horizontally */
-  margin-right: auto;       /* Centers image horizontally */
-  max-width: 100%;          /* Image will not be wider than its card */
-  height: auto;             /* Image height adjusts automatically */
-  /* Remove padding so image fits card better */
-}
-
-/* Make the timeline section scroll horizontally */
+/* Make the timeline section scroll horizontally on large screens */
 section {
-  display: flex; /* Align children (cards) in a row */
+  display: flex; /* Cards in a row */
   flex-direction: row; /* Horizontal layout */
+  justify-content: center; /* Center cards horizontally */
+  align-items: center;     /* Center cards vertically */
   overflow-x: auto; /* Enable horizontal scrolling */
-  gap: 2rem; /* Space between cards */
-  padding: 2rem 0; /* Add padding above and below */
-  scrollbar-width: none; /* For Firefox */
-  scroll-snap-type: x mandatory; /* Enable horizontal scroll snap on cards */
+  gap: 2rem;
+  padding: 2rem 0;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory; /* Horizontal snap, mandatory */
+  scroll-behavior: smooth;
 }
 
 /* Add extra space at the start of the cards for easier scrolling */
@@ -71,7 +63,6 @@ section div img {
   height: auto;       /* Maintain aspect ratio */
   object-fit: cover;  /* Crop image to fill the area */
   aspect-ratio: 16 / 9; /* Keep all images at 16:9 ratio */
-  max-width: 100%;    /* Responsive */
   border-radius: 0.5rem;
 }
 
@@ -86,12 +77,22 @@ section div {
   /* Add space inside the card */
   padding: 1rem;
   /* Add space between cards */
-  margin: 1.5rem auto;
+  margin: auto; /* Center each card horizontally and vertically */
   /* Limit the card width and center it */
   max-width: 21.875rem; /* 350px = 21.875rem */
   box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.05); /* 2px 8px */
   flex: 0 0 auto; /* Prevent cards from shrinking or growing */
   scroll-snap-align: center; /* Snap each card to the center of the scroll area */
+  scroll-snap-stop: always;  /* Always stop at each card */
+}
+
+/* Show a blue shadow when hovering over a card */
+section div:hover {
+  /* This adds a blue glow around the card */
+  box-shadow: 0 0 16px 4px #0077ff80;
+  /* Optional: Make the card stand out a bit more */
+  border-color: #0077ff;
+  transition: box-shadow 0.2s, border-color 0.2s; /* Smooth effect */
 }
 
 /* Optional: Add a little space below headings inside cards */
@@ -102,46 +103,76 @@ section div h2, section div h3 {
 
 /* Responsive design for tablets */
 @media (max-width: 900px) {
+  /* Stack cards vertically and enable vertical scroll snap */
   section {
+    flex-direction: column; /* Stack cards */
+    justify-content: center; /* Center cards horizontally */
+    align-items: center;     /* Center cards vertically */
+    overflow-x: unset;      /* No horizontal scroll */
+    overflow-y: auto;       /* Enable vertical scrolling */
     gap: 1rem;
     padding: 1rem 0;
-    scroll-snap-type: x mandatory; /* Keep scroll snap on tablets */
+    scroll-snap-type: y mandatory; /* Vertical snap, mandatory */
+    scroll-snap-stop: always;      /* Always stop at snap points */
+    scroll-behavior: smooth;
   }
   section div {
-    max-width: 16rem;
+    margin: auto; /* Center each card horizontally and vertically */
+    max-width: 17rem;
     padding: 0.75rem;
-    scroll-snap-align: center; /* Keep scroll snap on tablets */
+    margin: 1rem auto;
+    scroll-snap-align: center; /* Snap each card to center vertically */
   }
   section div img {
-    width: 100%;        /* Image fills the card width */
-    aspect-ratio: 16 / 9; /* Keep aspect ratio consistent */
-    height: auto;
-    object-fit: cover;
-    max-width: 100%;
+  width: 100%;        /* Image fills the card width */
+  height: auto;       /* Maintain aspect ratio */
+  object-fit: cover;  /* Crop image to fill the area */
+  aspect-ratio: 16 / 9; /* Keep all images at 16:9 ratio */
+  max-width: 100%;    /* Responsive */
+  border-radius: 0.5rem;
   }
 }
 
 /* Responsive design for mobile */
 @media (max-width: 600px) {
+  /* Stack cards vertically and enable vertical scroll snap */
   section {
+    flex-direction: column; /* Stack cards */
+    justify-content: center; /* Center cards horizontally */
+    align-items: center;     /* Center cards vertically */
+    overflow-x: unset;
+    overflow-y: auto;       /* Enable vertical scrolling */
     gap: 0.5rem;
     padding: 0.5rem 0;
-    scroll-snap-type: x mandatory; /* Keep scroll snap on mobile */
+    scroll-snap-type: y mandatory; /* Vertical snap, mandatory */
+    scroll-snap-stop: always;      /* Always stop at snap points */
+    scroll-behavior: smooth;
   }
-  scroll-behavior: :buffering;
   section div {
+    margin: auto; /* Center each card horizontally and vertically */
     max-width: 12rem;
     padding: 0.5rem;
     margin: 1rem auto;
-    scroll-snap-align: center; /* Keep scroll snap on mobile */
+    scroll-snap-align: center; /* Snap each card to center vertically */
   }
   section div img {
     width: 100%;        /* Image fills the card width */
     aspect-ratio: 16 / 9; /* Keep aspect ratio consistent */
     height: auto;
-    object-fit: cover;
+    object-fit: cover; /* Crop image to fill the area */
     max-width: 100%;
   }
+}
+
+/* Add hover effect for header image */
+header img:hover {
+  /* Add a blue border shadow around the image */
+  box-shadow: 0 0 12px 3px #8eb9eb80;
+  padding: 15px; /* Prevent layout shift when border appears */
+  border: 2px solid #91b8e4;
+  border-radius: 4px;
+  transition: box-shadow 0.2s, border 0.2s;
+
 }
 
 
