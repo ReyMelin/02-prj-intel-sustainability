@@ -38,7 +38,7 @@ section {
   flex-direction: row; /* Horizontal layout */
   flex-wrap: nowrap; /* Cards stay in a single row */
   justify-content: flex-start; /* Align cards to the start so all are part of the scroll */
-  align-items: center;     /* Center cards vertically */
+  align-items: start;     /* Align cards to the start */
   overflow-x: auto; /* Enable horizontal scrolling */
   gap: 2rem;
   padding: 2rem 0;
@@ -79,15 +79,14 @@ section div {
   /* Add space inside the card */
   padding: 1rem;
   /* Add space between cards */
-  margin: auto; /* Center each card horizontally and vertically */
-  /* Limit the card width and center it */
   max-width: 21.875rem; /* 350px = 21.875rem */
   min-width: auto;
+  max-height: min-content;
   box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.05); /* 2px 8px */
   flex: 0 0 auto; /* Prevent cards from shrinking or growing */
   scroll-snap-align: center; /* Snap each card to the center of the scroll area */
   scroll-snap-stop: always;  /* Always stop at each card */
-  height: 34rem; /* All cards have the same height */
+  min-height: fit-content; /* All cards have the same height */
 }
 
 /* Show a blue shadow when hovering over a card */
@@ -97,12 +96,6 @@ section div:hover {
   /* Optional: Make the card stand out a bit more */
   border-color: #0077ff;
   transition: box-shadow 0.2s, border-color 0.2s; /* Smooth effect */
-}
-
-/* Optional: Add a little space below headings inside cards */
-section div h2, section div h3 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
 /* Hide the details by default */
@@ -120,7 +113,8 @@ section div .details {
 section div:hover .details {
   display: block; /* Show extra details on hover */
   animation: fadeIn 0.3s ease-in-out; /* Smooth fade-in effect */
-  max-height: fit-content;  text-align: center;
+  max-height: fit-content;  
+  text-align: center;
   color: #f4f4f4;
   background-color: #0077ff;
   background: linear-gradient(135deg, #16569ef6, #00c8ff);
