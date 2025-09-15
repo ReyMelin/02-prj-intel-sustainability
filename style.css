@@ -105,6 +105,28 @@ section div h2, section div h3 {
   margin-bottom: 0.5rem;
 }
 
+/* Hide the details by default */
+section div .details {
+  display: none; /* Hide extra details */
+  margin-top: 1rem;
+  background: #eaf6ff;
+  color: #16569e;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Show details when hovering over the card */
+section div:hover .details {
+  display: block; /* Show extra details on hover */
+  animation: fadeIn 0.3s ease-in-out; /* Smooth fade-in effect */
+  max-height: fit-content;  text-align: center;
+  color: #f4f4f4;
+  background-color: #0077ff;
+  background: linear-gradient(135deg, #16569ef6, #00c8ff);
+  padding: 1rem;
+}
+
 /* Responsive design for tablets */
 @media (max-width: 900px) {
   /* Stack cards vertically and enable vertical scroll snap */
