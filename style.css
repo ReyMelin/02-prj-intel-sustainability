@@ -36,26 +36,28 @@ header div p{
 section {
   display: flex; /* Cards in a row */
   flex-direction: row; /* Horizontal layout */
-  justify-content: center; /* Center cards horizontally */
+  flex-wrap: nowrap; /* Cards stay in a single row */
+  justify-content: flex-start; /* Align cards to the start so all are part of the scroll */
   align-items: center;     /* Center cards vertically */
   overflow-x: auto; /* Enable horizontal scrolling */
   gap: 2rem;
   padding: 2rem 0;
   scrollbar-width: none;
   scroll-snap-type: x mandatory; /* Horizontal snap, mandatory */
-  scroll-behavior: smooth;
+  scroll-snap-stop: always;      /* Always stop at snap points */
+  scroll-behavior: smooth;       /* Smooth scrolling */
 }
 
 /* Add extra space at the start of the cards for easier scrolling */
 section::before {
   content: "";
-  flex: 0 0 2rem; /* Creates a gap at the start */
+  flex: 0 0 5rem; /* Creates a gap at the start */
 }
 
 /* Add extra space at the end of the cards for easier scrolling */
 section::after {
   content: "";
-  flex: 0 0 2rem; /* Creates a gap at the end */
+  flex: 0 0 5rem; /* Creates a gap at the end */
 }
 
 section div img {
@@ -80,10 +82,12 @@ section div {
   margin: auto; /* Center each card horizontally and vertically */
   /* Limit the card width and center it */
   max-width: 21.875rem; /* 350px = 21.875rem */
+  min-width: auto;
   box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.05); /* 2px 8px */
   flex: 0 0 auto; /* Prevent cards from shrinking or growing */
   scroll-snap-align: center; /* Snap each card to the center of the scroll area */
   scroll-snap-stop: always;  /* Always stop at each card */
+  height: 34rem; /* All cards have the same height */
 }
 
 /* Show a blue shadow when hovering over a card */
@@ -118,9 +122,9 @@ section div h2, section div h3 {
   }
   section div {
     margin: auto; /* Center each card horizontally and vertically */
-    max-width: 17rem;
+    max-width: fit-content;
     padding: 0.75rem;
-    margin: 1rem auto;
+    margin: 1rem;
     scroll-snap-align: center; /* Snap each card to center vertically */
   }
   section div img {
@@ -150,9 +154,9 @@ section div h2, section div h3 {
   }
   section div {
     margin: auto; /* Center each card horizontally and vertically */
-    max-width: 12rem;
+    max-width: fit-content;
     padding: 0.5rem;
-    margin: 1rem auto;
+    margin: 1rem;
     scroll-snap-align: center; /* Snap each card to center vertically */
   }
   section div img {
